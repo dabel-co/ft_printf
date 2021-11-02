@@ -6,7 +6,7 @@
 #    By: dabel-co <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/27 15:51:51 by dabel-co          #+#    #+#              #
-#    Updated: 2021/09/03 11:46:24 by dabel-co         ###   ########.fr        #
+#    Updated: 2021/11/02 19:10:32 by dabel-co         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,17 +23,18 @@ FILES = printf \
 	x \
 	char \
 
-C = $(addprefix ./ft_, $(addsuffix .c, $(FILES)))
-O = $(addprefix ./ft_, $(addsuffix .o, $(FILES)))
+C = $(addprefix ./src/ft_, $(addsuffix .c, $(FILES)))
+O = $(addprefix ./src/ft_, $(addsuffix .o, $(FILES)))
 
 all: $(NAME)
 
-$(NAME) :	$(O) check_libft
+$(NAME) : check_libft $(O)
 	@$(AR) $(NAME) $(O)
 
-$(O) : $(C) libft
-	@$(CC) $(FLAGS) -c $(C)
+$(O) : $(C)
+	@$(CC) $(FLAGS) -c $< -o $@
 check_libft :
+	@if test -d Libft; then echo Libft found! ; else git clone https://github.com/dabel-co/Libft.git; fi
 	@make all -C ./libft
 	@cp ./libft/libft.a $(NAME)
 clean:
