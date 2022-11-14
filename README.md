@@ -1,6 +1,6 @@
 # Ft_printf
 
-**This project is pretty straight forward. Recoded printf. You will mainly learn how to use variadic arguments.**
+**This project is pretty straight forward. Recoded printf.**
 
  **What i've learned doing this project**
  How to use variadic arguments.
